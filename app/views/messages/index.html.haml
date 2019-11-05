@@ -20,7 +20,7 @@
   .chat-main
     .main-header
       .main-header__left-box
-        %h2(class="main-header__leftbox__current-group")sample-group
+        %h2.main-header__leftbox__current-group sample-group
         %ul.main-header__left-box__member-list 
           Member :
           %li.main-header__left-box__member-list__member  user
@@ -34,11 +34,11 @@
         %p.message__text< hello
     .form
       %form.new_message#new_message
-        %input{:name => "utf8", :type => "hidden", :value => ""}
-        %input{:type => "hidden", :name => "authenticity_token", :value => ""}
+        %input{name: "utf8", type: "hidden", value: ""}
+        %input{type: "hidden", name: "authenticity_token", value: ""}
         .input-box
-          %input{:placeholder => "type a message", :class => "input-box__text", :type => "text", :name => "message[content]", :id => "message_content"}
-          %label{:class => "input-box__image", :for => "message_image"}
+          %input{placeholder: "type a message", class: "input-box__text", type: "text", name: "message[content]", id: "message_content"}
+          %label{class: "input-box__image", for: "message_image"}
             = fa_icon 'image'
-            %input{:class => "input-box__image__file", :type => "file", :name => "message[image]" ,:id => "message_image"}
-        %input{:type => "submit", :name => "commit", :value => "Send", :class => "submit-btn"}
+            %input{class: "input-box__image__file", type: "file", name: "message[image]" ,id: "message_image"}
+        %input{type: "submit", name: "commit", value: "Send", class: "submit-btn"}
