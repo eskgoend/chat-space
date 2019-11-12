@@ -1,8 +1,9 @@
 $(function() {
   function buildMessage(message) {
-    let addImage = (message.image.url !== null) ? `<img class="message__text__image" src="${message.image.url}" >` :''
+    let addContent = message.content ? `${message.content}` : ""
+    let addImage =  message.image.url ? `<img class="message__text__image" src="${message.image.url}" >` :'';
 
-    let html =`<div class="message">
+    let html =`<div class="message" data-message-id="${message.id}">
                 <div class="message__upper-info">
                   <p class="message__upper-info__talker">
                   ${message.user_name}
@@ -12,7 +13,7 @@ $(function() {
                   </p>
                 </div>
                   <p class="message__text">
-                  </p><p class="message__text__content">${message.content}</p>
+                  </p><p class="message__text__content">${addContent}</p>
                   ${addImage}
                   <p></p>
                 </div>`
@@ -42,5 +43,32 @@ $(function() {
       alert('error')
       $('.form__submit').prop('disabled', false);
     })
-  })
+  });
+
+    let reloadMessages = function() {
+      if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+      let href = 'api/messages#index {:format=>"json"}'
+      let last_message_id = $('.message:last').data('message-id');
+
+      $.ajax({
+        url: href,
+        type: 'GET',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+
+      .done(function(messages) {
+        let insertHTML = '';
+        messages.forEach(function(message) {
+          insertHTML = buildMessage(message);
+          $('.messages').append(insertHTML);
+          $('.messages').animate({ scrollTop : $('.messages')[0].scrollHeight}, 'fast' );
+        });
+      })
+      .fail(function() {
+        alert("自動更新に失敗しました");
+      });
+    };
+  };
+  setInterval(reloadMessages, 5000);
 });

@@ -48,7 +48,7 @@ $(function() {
             addUser(user);
           });
         } else  if (input.length == 0) {
-            return false;
+          return false;
         } else {
           addNoUser();
         }
@@ -68,7 +68,7 @@ $(function() {
   });
   $(document).on('click', ".chat-group-user__btn--remove", function() {
     $(this)
-    .parent()
-    .remove();
+      .parent()
+      .remove();
   });
 });
