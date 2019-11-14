@@ -12,11 +12,11 @@ $(function() {
                   ${message.created_at}
                   </p>
                 </div>
-                  <p class="message__text">
-                  </p><p class="message__text__content">${addContent}</p>
-                  ${addImage}
-                  <p></p>
-                </div>`
+                  <div class="message__text">
+                    <p class="message__text__content">${addContent}</p>
+                      ${addImage}
+                  </div>
+              </div>`
 
                 return html
   }
