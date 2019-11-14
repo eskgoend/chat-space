@@ -14,8 +14,8 @@ $(function() {
                 </div>
                   <div class="message__text">
                     <p class="message__text__content">${addContent}</p>
+                  <div>
                       ${addImage}
-                  </div>
               </div>`
 
                 return html
